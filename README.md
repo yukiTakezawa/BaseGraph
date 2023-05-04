@@ -3,10 +3,10 @@ We propose the Base-(k+1) Graph, which is finite-time convergence for any number
 Thanks this property, the Base-(k+1) Graph enables Decentralized SGD to converge faster with fewer communication costs than the exponential graph.
 
 ## Dependency
-``
+```
 conda env create --file conda_env.yaml
 conda activate MT_env
-``
+```
 
 ## Visualization
 ```
