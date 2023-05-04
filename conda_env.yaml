@@ -1,0 +1,24 @@
+name: MT_env
+channels:
+  - pytorch-lts
+  - anaconda
+  - nvidia
+  - conda-forge
+  - jmcmurray
+  - defaults
+dependencies:
+  - python=3.8.12
+  - pytorch=1.8.2
+  - scipy=1.7.1
+  - timm=0.4.12
+  - torchaudio=0.8.2
+  - torchvision=0.9.2
+  - tqdm=4.62.3
+  - numpy=1.21.2
+  - more-itertools=8.5.0
+  - cudatoolkit=11.1.74
+  - matplotlib=3.4.3
+  - ipykernel=6.4.1
+  - jsonschema=3.2.0
+  - sympy=1.11.1
+  - networkx=2.8.4

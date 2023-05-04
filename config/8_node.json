@@ -1,0 +1,45 @@
+{
+  "master_address": "localhost",
+  "port": "1234",
+  "n_nodes": 8,
+    "node0": {
+    "node_id": 0,
+    "cuda": "cuda:0",
+    "ip_address": "localhost"
+  },
+  "node1": {
+    "node_id": 1,
+    "cuda": "cuda:1",
+    "ip_address": "localhost"
+  },
+  "node2": {
+    "node_id": 2,
+    "cuda": "cuda:2",
+    "ip_address": "localhost"
+  },
+  "node3": {
+    "node_id": 3,
+    "cuda": "cuda:3",
+    "ip_address": "localhost"
+  },
+  "node4": {
+    "node_id": 4,
+    "cuda": "cuda:4",
+    "ip_address": "localhost"
+  },
+  "node5": {
+    "node_id": 5,
+    "cuda": "cuda:5",
+    "ip_address": "localhost"
+  },
+  "node6": {
+    "node_id": 6,
+    "cuda": "cuda:6",
+    "ip_address": "localhost"
+  },
+  "node7": {
+    "node_id": 7,
+    "cuda": "cuda:7",
+    "ip_address": "localhost"
+  }
+}
