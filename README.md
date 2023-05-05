@@ -11,7 +11,7 @@ conda activate MT_env
 ## Visualization
 We provide the notebook to visualize the Base-(k+1) Graph in `notebook/visualization.ipynb`.
 
-![Base-2 Graph with 6 nodes](pic/base_2_graph_with_6_nodes.png "base2_graph_with_6_nodes")
+![Base-2 Graph with 6 nodes](pic/base_2_graph_with_6_nodes.png "Base-2 Graph")
 
 Specifically, you can construct the Base-(k+1) Graph and visualize it as follows:
 ```
@@ -38,4 +38,5 @@ To plot the learning curves, we provide the notebook in `notebook/CIFAR10 + DSGD
 To reproduce the experimental results in our paper, we provide the bash script.
 ```
 bash evalute_cifar10.sh
+base evaluate_cifar100.sh
 ```
