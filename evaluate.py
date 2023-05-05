@@ -19,7 +19,6 @@ from model.vgg_cifar100 import*
 from model.lenet_fashion import *
 
 from optimizer.gossip_optimizer import *
-from optimizer.qgdsgdm_optimizer import *
 from optimizer.d2_optimizer import *
 
 from data.loader_dirichlet import *
@@ -56,8 +55,6 @@ def run(rank, size, datasets, config):
 
     if config["optimizer"] == "gossip":
         optimizer = GossipOptimizer(params=net.parameters(), node_id=rank, graph=config["graph"], local_step=config["local_step"], lr=config["lr"], beta=config["beta"], device=config["device"][rank])
-    elif config["optimizer"] == "qg_dsgdm":
-        optimizer = QgDsgdmOptimizer(params=net.parameters(), node_id=rank, graph=config["graph"], local_step=config["local_step"], lr=config["lr"], beta=config["beta"], device=config["device"][rank])
     elif config["optimizer"] == "d2":
         optimizer = D2Optimizer(params=net.parameters(), node_id=rank, graph=config["graph"], local_step=config["local_step"], lr=config["lr"], beta=config["beta"], device=config["device"][rank])
 
@@ -100,21 +97,21 @@ def init_process(rank, size, datasets, config, fn, backend='gloo'):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('log', default="./results", type=str)
-    parser.add_argument('--dataset', default="cifar10", type=str)
-    parser.add_argument('--optimizer', default="gossip", type=str)
-    parser.add_argument('--batch', default=100, type=int)
-    parser.add_argument('--seed', default=0, type=int)
-    parser.add_argument('--model', default="lenet", type=str)
-    parser.add_argument('--nw', default="ring", type=str)
+    parser.add_argument('log', default="./results", type=str, help="A directory where the log is stored.")
+    parser.add_argument('--dataset', default="cifar10", type=str, help="Dataset. cifar10 and cifar100 are available.") 
+    parser.add_argument('--optimizer', default="gossip", type=str, help="Optimization method.")
+    parser.add_argument('--batch', default=32, type=int, help="Batch size.")
+    parser.add_argument('--seed', default=0, type=int, help="Seed value.")
+    parser.add_argument('--model', default="lenet", type=str, help="Neural network architecture. vgg is available.")
+    parser.add_argument('--nw', default="one_peer_base", type=str, help="An undelying network topology. one_peer_base, two_peer_base, etc. are available.")
     parser.add_argument('--cuda', default=None, type=str)
-    parser.add_argument('--config', default="config/8_node.json", type=str)
-    parser.add_argument('--node_list', nargs="*", type=int)
-    parser.add_argument('--lr', default=1e-3, type=float)
-    parser.add_argument('--epoch', default=1000, type=int)
-    parser.add_argument('--alpha', default=100, type=float)
-    parser.add_argument('--beta', default=0.9, type=float)
-    parser.add_argument('--local_step', default=5, type=int)
+    parser.add_argument('--config', default="config/8_node.json", type=str, help="A configulation file.")
+    parser.add_argument('--node_list', nargs="*", type=int, help="A list of node id.")
+    parser.add_argument('--lr', default=1e-3, type=float, help="Learning rate.")
+    parser.add_argument('--epoch', default=1000, type=int, help="The number of epochs.")
+    parser.add_argument('--alpha', default=100, type=float, help="Hyperparameter of Dirichlet distribution.")
+    parser.add_argument('--beta', default=0.9, type=float, help="Momentum coefficient.")
+    parser.add_argument('--local_step', default=5, type=int, help="The number of local step. The local step is not available now. Please specify 1.")
     args = parser.parse_args()
 
     config = defaultdict(dict)
@@ -152,7 +149,7 @@ if __name__ == "__main__":
     elif config["nw"] == "four_peer_base":
         config["graph"] = BaseGraph(n_nodes, max_degree=4, seed=config["seed"])
     else:
-        print("ERROR: ring, exp, one_peer_exp, one_peer_deco are available", file=sys.stderr)
+        print("ERROR: exp, one_peer_exp, {one,two,three,four}_peer_base are available", file=sys.stderr)
         sys.exit(1)
 
     if args.cuda is None:
