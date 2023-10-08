@@ -40,3 +40,14 @@ To reproduce the experimental results in our paper, we provide the bash script.
 bash evalute_cifar10.sh
 base evaluate_cifar100.sh
 ```
+
+
+## Citation
+```
+@inproceedings{takezawa2023exponential,
+      title={Beyond Exponential Graph: Communication-Efficient Topologies for Decentralized Learning via Finite-time Convergence}, 
+      author={Yuki Takezawa and Ryoma Sato and Han Bao and Kenta Niwa and Makoto Yamada},
+      year={2023},
+      booktitle={NeurIPS}
+}
+```
