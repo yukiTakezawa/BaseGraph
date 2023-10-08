@@ -1,4 +1,4 @@
-# Base-(k+1) Graph
+# Beyond Exponential Graph: Communication-Efficient Topologies for Decentralized Learning via Finite-time Convergence (NeurIPS 2023)
 We propose the Base-(k+1) Graph, which is finite-time convergence for any number of nodes and maximum degree $k$,
 Thanks to this property, the Base-(k+1) Graph enables Decentralized SGD to converge faster with fewer communication costs than the exponential graph.
 
